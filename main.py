@@ -140,6 +140,36 @@ class COMPortSettingWindow(QWidget):
 
     def initComPortUI(self):
         print('initComPortUI')
+        self.setGeometry(400, 400, 300, 100)
+        self.setWindowTitle('COM Port Setting')
+
+        ## Make dropDownMenu
+        self.comPortDropDown = QComboBox()
+        self.comPortDropDown.addItems(['COM3', 'COM13'])
+
+        ## Make Button
+        self.okBT = QtWidgets.QPushButton('OK')
+        self.okBT.clicked.connect(self.okBT_Push)
+
+        self.cancelBT = QtWidgets.QPushButton('Cancel')
+        self.cancelBT.clicked.connect(self.cancelBT_Push)
+
+        comPortLayout = QGridLayout()
+        comPortLayout.addWidget(self.comPortDropDown, 0, 0, 1, 0)
+        comPortLayout.addWidget(self.okBT, 1, 0)
+        comPortLayout.addWidget(self.cancelBT, 1, 1)
+
+        self.setLayout(comPortLayout)
+
+    def okBT_Push(self):
+        print('okBT_Push')
+        print(self.comPortDropDown.currentText())
+        print(self.comPortDropDown.currentIndex())
+
+    def cancelBT_Push(self):
+        print('cancelBT_Push')
+        self.hide()
+
 
 class MainWindow(QMainWindow):
     # Global variables for the Program
